@@ -4,13 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "ProjectTTCharacter.h"
 #include "TTtrafficLight.generated.h"
 
 UCLASS()
 class PROJECTTT_API ATTtrafficLight : public AActor
 {
 	GENERATED_BODY()
-	
+	float _Sand = 0;
+	FVector lastGreenPosition = FVector();
 public:	
 	// Sets default values for this actor's properties
 	ATTtrafficLight();
@@ -22,5 +24,20 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float GreenTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float RedTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool GreenOrRed; //true green false red
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AProjectTTCharacter* PlayerCharacter;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FVector playerStartPoint;
+
+	UFUNCTION(BlueprintCallable)
+		bool TrafficLightTick(float DeltaTime);//return true if light changed
+	UFUNCTION(BlueprintCallable)
+		bool OnDetectPlayer(AProjectTTCharacter* detectedCharacter);//true if player yeeted back
 
 };

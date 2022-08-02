@@ -23,7 +23,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	FVector Positions[9];
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<FVector> Positions;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float TimeLimit;
 	void Teleport();
 };

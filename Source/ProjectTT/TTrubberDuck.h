@@ -22,7 +22,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FVector> Positions;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector FinalPosition;
 	FVector Teleport();
 	bool atFinal = false;

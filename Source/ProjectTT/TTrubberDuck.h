@@ -22,5 +22,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	TArray<FVector> Positions;
+	FVector FinalPosition;
+	FVector Teleport();
+	bool atFinal = false;
+	UFUNCTION(BlueprintCallable)
+		bool SensePlayer();
 };

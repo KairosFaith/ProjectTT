@@ -7,7 +7,7 @@
 #include "ITTselectable.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI)
+UINTERFACE(MinimalAPI, Blueprintable)
 class UITTselectable : public UInterface
 {
 	GENERATED_BODY()
@@ -21,5 +21,7 @@ class PROJECTTT_API IITTselectable
 	GENERATED_BODY()
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
-public:
+public:	
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+		bool Select(); //return false if action is invalid
 };

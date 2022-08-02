@@ -25,3 +25,29 @@ void ATTrubberDuck::Tick(float DeltaTime)
 
 }
 
+bool ATTrubberDuck::SensePlayer()
+{
+	if (Positions.Num() > 0)
+	{
+		//teleport to first position
+		//Teleport();
+		return false;
+	}
+	else if (!atFinal) {
+		SetActorLocation(FinalPosition);
+		atFinal = true;
+		return false;
+	}
+	else {
+		//rubber duck dissapear, go to next puzzle
+		return true;
+	}
+}
+FVector ATTrubberDuck::Teleport()
+{
+	int r = FMath::RandRange(0, Positions.Num());
+	FVector positionToTele = Positions[r];
+	SetActorLocation(positionToTele);
+	Positions.Remove(positionToTele);
+	return positionToTele;
+}

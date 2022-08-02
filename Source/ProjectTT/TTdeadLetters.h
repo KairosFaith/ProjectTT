@@ -10,7 +10,8 @@ UCLASS()
 class PROJECTTT_API ATTdeadLetters : public AActor
 {
 	GENERATED_BODY()
-	
+	int _Index = 0;
+	float _Sand = 0;
 public:	
 	// Sets default values for this actor's properties
 	ATTdeadLetters();
@@ -22,5 +23,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	FVector Positions[9];
+	float TimeLimit;
+	void Teleport();
 };

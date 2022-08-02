@@ -22,6 +22,14 @@ void ATTdeadLetters::BeginPlay()
 void ATTdeadLetters::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	_Sand -= DeltaTime;
+	if (_Sand < 0)
+		Teleport();
 }
 
+void ATTdeadLetters::Teleport()
+{
+	_Index++;
+	FVector tele = Positions[_Index];
+	SetActorLocation(tele);
+}

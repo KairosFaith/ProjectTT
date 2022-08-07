@@ -13,6 +13,7 @@ class PROJECTTT_API ATTtrafficLight : public AActor
 	GENERATED_BODY()
 	float _Sand = 0;
 	FVector lastGreenPosition = FVector();
+	bool _Started = false;
 public:	
 	// Sets default values for this actor's properties
 	ATTtrafficLight();
@@ -24,14 +25,16 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float GreenTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float RedTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool GreenOrRed; //true green false red
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AProjectTTCharacter* PlayerCharacter;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FVector playerStartPoint;
 
@@ -39,5 +42,11 @@ public:
 		bool TrafficLightTick(float DeltaTime);//return true if light changed
 	UFUNCTION(BlueprintCallable)
 		bool OnDetectPlayer(AProjectTTCharacter* detectedCharacter);//true if player yeeted back
+	UFUNCTION(BlueprintImplementableEvent)
+		void GreenLight();
+	UFUNCTION(BlueprintImplementableEvent)
+		void RedLight();
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnPlayerYeet(FVector position);
 
 };

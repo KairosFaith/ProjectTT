@@ -22,23 +22,23 @@ void ATTtrafficLight::BeginPlay()
 void ATTtrafficLight::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	//if(_Started)
+		TrafficLightTick(DeltaTime);
 }
 
 bool ATTtrafficLight::TrafficLightTick(float DeltaTime)
 {
-	FVector playerLocation = PlayerCharacter->GetActorLocation();
 	_Sand -= DeltaTime;
 	if (_Sand <= 0) {
-
-		if (GreenOrRed)//if green
-			lastGreenPosition = playerLocation;
 		GreenOrRed = !GreenOrRed;
-		if (GreenOrRed)
+		if (GreenOrRed) {
 			_Sand = GreenTime;
-		else
+			GreenLight();
+		}
+		else {
 			_Sand = RedTime;
-
+			RedLight();
+		}
 		return true;
 	}
 	return false;
@@ -46,16 +46,19 @@ bool ATTtrafficLight::TrafficLightTick(float DeltaTime)
 
 bool ATTtrafficLight::OnDetectPlayer(AProjectTTCharacter* detectedCharacter)
 {//true if player yeeted back
-	FVector playerLocation = PlayerCharacter->GetActorLocation();
-	if (GreenOrRed)
-	{
-		//do nothing
+	FVector playerLocation = detectedCharacter->GetActorLocation();
+	if (!_Started) {
+		playerStartPoint = playerLocation;// might change due to game design
+		_Started = true;
 	}
+	if (GreenOrRed)
+		lastGreenPosition = playerLocation;
 	else//if red
 	{
 		float displacement = (playerLocation - lastGreenPosition).Length();
 		if (displacement > 1) {
-			PlayerCharacter->SetActorLocation(playerStartPoint);
+			detectedCharacter->SetActorLocation(playerStartPoint);
+			OnPlayerYeet(playerStartPoint);
 			return true;
 		}
 	}

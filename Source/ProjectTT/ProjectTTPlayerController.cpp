@@ -47,6 +47,7 @@ void AProjectTTPlayerController::PlayerTick(float DeltaTime)
 	{
 		FollowTime = 0.f;
 	}
+	OnTick();
 }
 
 void AProjectTTPlayerController::SetupInputComponent()

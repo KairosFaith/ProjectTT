@@ -15,7 +15,7 @@ ATTdeadLetters::ATTdeadLetters()
 void ATTdeadLetters::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	_Sand = TimeLimit;
 }
 
 // Called every frame
@@ -30,7 +30,10 @@ void ATTdeadLetters::Tick(float DeltaTime)
 void ATTdeadLetters::Teleport()
 {
 	_Index++;
+	if (_Index >= Positions.Num())
+		_Index = 0;
 	FVector tele = Positions[_Index];
 	SetActorLocation(tele);
 	OnTeleport(tele);
+	_Sand = TimeLimit;
 }

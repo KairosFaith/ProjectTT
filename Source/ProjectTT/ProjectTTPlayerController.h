@@ -45,6 +45,19 @@ private:
 	bool bInputPressed; // Input is bring pressed
 	bool bIsTouch; // Is it a touch device
 	float FollowTime; // For how long it has been pressed
+
+//TOTEM stuff
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float InteractRange = 150;
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnClick();
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnTick();
+	UFUNCTION(BlueprintCallable)
+		bool CheckDistanceObjectPawn(AActor* actor);
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//	TScriptInterface<IITTselectable> Selected;
 };
 
 

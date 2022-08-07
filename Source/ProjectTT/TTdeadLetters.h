@@ -28,4 +28,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float TimeLimit;
 	void Teleport();
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnTeleport(FVector position);
 };

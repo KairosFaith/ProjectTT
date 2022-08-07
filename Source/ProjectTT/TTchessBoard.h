@@ -4,16 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TTrubberDuck.generated.h"
+#include "TTchessBoard.generated.h"
 
+using namespace std;
 UCLASS()
-class PROJECTTT_API ATTrubberDuck : public AActor
+class PROJECTTT_API ATTchessBoard : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ATTrubberDuck();
+	ATTchessBoard();
 
 protected:
 	// Called when the game starts or when spawned
@@ -22,14 +23,17 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	FName selectedPiece;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FVector> Positions;
+		FName CorrectPiece;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FVector FinalPosition;
-	FVector Teleport();
-	bool atFinal = false;
+		FVector CorrectSpot;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float AcceptableDeviation = 1;
+
 	UFUNCTION(BlueprintCallable)
-		bool SensePlayer();
-	UFUNCTION(BlueprintImplementableEvent)
-		void OnTeleport(FVector position);
+		bool SelectPiece(FName piece);
+	UFUNCTION(BlueprintCallable)
+		bool CheckWin(FVector chosenSpot);
 };

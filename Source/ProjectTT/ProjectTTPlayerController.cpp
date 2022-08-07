@@ -69,6 +69,10 @@ void AProjectTTPlayerController::OnSetDestinationPressed()
 	bInputPressed = true;
 	// Just in case the character was moving because of a previous short press we stop it
 	StopMovement();
+
+
+	//TOTEM
+	OnClick();
 }
 
 void AProjectTTPlayerController::OnSetDestinationReleased()
@@ -101,4 +105,13 @@ void AProjectTTPlayerController::OnTouchReleased(const ETouchIndex::Type FingerI
 {
 	bIsTouch = false;
 	OnSetDestinationReleased();
+}
+
+bool AProjectTTPlayerController::CheckDistanceObjectPawn(AActor* actor)
+{
+	FVector playerPos = GetPawn()->GetActorLocation();
+	FVector objPos = actor->GetActorLocation();
+	float length = FVector::Distance(playerPos, objPos);
+
+	return length<= InteractRange;
 }

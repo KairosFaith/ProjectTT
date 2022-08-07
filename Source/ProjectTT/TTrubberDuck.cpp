@@ -29,8 +29,7 @@ bool ATTrubberDuck::SensePlayer()
 {
 	if (Positions.Num() > 0)
 	{
-		//teleport to first position
-		//Teleport();
+		Teleport();
 		return false;
 	}
 	else if (!atFinal) {
@@ -39,7 +38,7 @@ bool ATTrubberDuck::SensePlayer()
 		return false;
 	}
 	else {
-		//rubber duck dissapear, go to next puzzle
+		//win Puzzle
 		return true;
 	}
 }
@@ -49,5 +48,6 @@ FVector ATTrubberDuck::Teleport()
 	FVector positionToTele = Positions[r];
 	SetActorLocation(positionToTele);
 	Positions.Remove(positionToTele);
+	OnTeleport(positionToTele);
 	return positionToTele;
 }

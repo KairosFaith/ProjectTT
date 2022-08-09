@@ -34,6 +34,7 @@ bool ATTrubberDuck::SensePlayer()
 	}
 	else if (!atFinal) {
 		SetActorLocation(FinalPosition);
+		OnTeleport(FinalPosition);
 		atFinal = true;
 		return false;
 	}
@@ -44,7 +45,7 @@ bool ATTrubberDuck::SensePlayer()
 }
 FVector ATTrubberDuck::Teleport()
 {
-	int r = FMath::RandRange(0, Positions.Num());
+	int r = FMath::RandRange(0, Positions.Num() - 1);
 	FVector positionToTele = Positions[r];
 	SetActorLocation(positionToTele);
 	Positions.Remove(positionToTele);

@@ -7,7 +7,7 @@
 #include "TTrubberDuck.generated.h"
 
 UCLASS()
-class PROJECTTT_API ATTrubberDuck : public AActor
+class PROJECTTT_API ATTrubberDuck : public APawn
 {
 	GENERATED_BODY()
 	

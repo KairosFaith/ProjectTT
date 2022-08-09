@@ -8,7 +8,7 @@
 #include "TTtrafficLight.generated.h"
 
 UCLASS()
-class PROJECTTT_API ATTtrafficLight : public AActor
+class PROJECTTT_API ATTtrafficLight : public APawn
 {
 	GENERATED_BODY()
 	float _Sand = 0;

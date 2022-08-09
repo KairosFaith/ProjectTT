@@ -51,13 +51,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float InteractRange = 150;
 	UFUNCTION(BlueprintImplementableEvent)
-		void OnClick();
+		void OnClick(AActor* actor);
 	UFUNCTION(BlueprintImplementableEvent)
 		void OnTick();
 	UFUNCTION(BlueprintCallable)
 		bool CheckDistanceObjectPawn(AActor* actor);
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//	TScriptInterface<IITTselectable> Selected;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FVector ClickedLocation;
 };
 
 

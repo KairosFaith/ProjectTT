@@ -7,7 +7,7 @@
 #include "NiagaraFunctionLibrary.h"
 #include "ProjectTTCharacter.h"
 #include "Engine/World.h"
-
+#include "ITTselectable.h"
 AProjectTTPlayerController::AProjectTTPlayerController()
 {
 	bShowMouseCursor = true;
@@ -70,10 +70,6 @@ void AProjectTTPlayerController::OnSetDestinationPressed()
 	bInputPressed = true;
 	// Just in case the character was moving because of a previous short press we stop it
 	StopMovement();
-
-
-	//TOTEM
-	OnClick();
 }
 
 void AProjectTTPlayerController::OnSetDestinationReleased()
@@ -93,6 +89,11 @@ void AProjectTTPlayerController::OnSetDestinationReleased()
 		// We move there and spawn some particles
 		UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, HitLocation);
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, FXCursor, HitLocation, FRotator::ZeroRotator, FVector(1.f, 1.f, 1.f), true, true, ENCPoolMethod::None, true);
+
+
+		//TOTEM
+		ClickedLocation = HitLocation;
+		OnClick(Hit.GetActor());
 	}
 }
 
@@ -113,6 +114,8 @@ bool AProjectTTPlayerController::CheckDistanceObjectPawn(AActor* actor)
 	FVector playerPos = GetPawn()->GetActorLocation();
 	FVector objPos = actor->GetActorLocation();
 	float length = FVector::Distance(playerPos, objPos);
-
-	return length<= InteractRange;
+	bool inRange = length <= InteractRange;
+	//if (inRange)
+		//selected->Select(ClickedLocation);
+	return inRange;
 }

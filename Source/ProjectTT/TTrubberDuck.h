@@ -30,6 +30,10 @@ public:
 	bool atFinal = false;
 	UFUNCTION(BlueprintCallable)
 		bool SensePlayer();
+	UFUNCTION(BlueprintCallable)
+		bool SelectThis();
 	UFUNCTION(BlueprintImplementableEvent)
 		void OnTeleport(FVector position);
+	UFUNCTION(BlueprintImplementableEvent)
+		void WinPuzzle();
 };

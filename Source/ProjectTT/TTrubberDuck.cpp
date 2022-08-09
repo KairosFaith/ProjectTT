@@ -43,6 +43,12 @@ bool ATTrubberDuck::SensePlayer()
 		return true;
 	}
 }
+bool ATTrubberDuck::SelectThis()
+{
+	if (atFinal)
+		WinPuzzle();
+	return atFinal;
+}
 FVector ATTrubberDuck::Teleport()
 {
 	int r = FMath::RandRange(0, Positions.Num() - 1);

@@ -58,7 +58,7 @@ bool ATTtrafficLight::OnDetectPlayer(AProjectTTCharacter* detectedCharacter)
 		float displacement = (playerLocation - lastGreenPosition).Length();
 		if (displacement > 1) {
 			detectedCharacter->SetActorLocation(playerStartPoint);
-			
+			GetController()->StopMovement();
 			OnPlayerYeet(playerStartPoint);
 			return true;
 		}

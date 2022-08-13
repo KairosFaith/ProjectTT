@@ -32,5 +32,6 @@ public:
 		bool AddColor(FLinearColor& color);
 	//UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		bool MinusColor(FLinearColor& color);
-
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnChangeColor(bool success, FLinearColor color);
 };

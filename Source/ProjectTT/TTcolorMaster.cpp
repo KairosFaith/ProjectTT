@@ -32,10 +32,14 @@ void ATTcolorMaster::SetTarget(FLinearColor& color)
 bool ATTcolorMaster::AddColor(FLinearColor& color)
 {
 	ColorMix += color;
-	return ColorMix == TargetColor;
+	bool success = ColorMix == TargetColor;
+	OnChangeColor(success,ColorMix);
+	return success;
 }
 bool ATTcolorMaster::MinusColor(FLinearColor& color)
 {
 	ColorMix -= color;
-	return ColorMix == TargetColor;
+	bool success = ColorMix == TargetColor;
+	OnChangeColor(success, ColorMix);
+	return success;
 }

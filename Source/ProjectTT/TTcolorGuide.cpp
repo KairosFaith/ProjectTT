@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "TTcolorMaster.h"
 #include "TTcolorGuide.h"
+#include "TTcolorMaster.h"
 
 // Sets default values
 ATTcolorGuide::ATTcolorGuide()

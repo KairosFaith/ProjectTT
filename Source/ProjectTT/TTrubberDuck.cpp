@@ -39,7 +39,7 @@ bool ATTrubberDuck::SensePlayer()
 		return false;
 	}
 	else {
-		//win Puzzle
+		WinPuzzle();
 		return true;
 	}
 }
@@ -48,6 +48,10 @@ bool ATTrubberDuck::SelectThis()
 	if (atFinal)
 		WinPuzzle();
 	return atFinal;
+}
+void ATTrubberDuck::WinPuzzle()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("You win!"));
 }
 FVector ATTrubberDuck::Teleport()
 {

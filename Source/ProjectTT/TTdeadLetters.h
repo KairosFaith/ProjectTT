@@ -29,5 +29,9 @@ public:
 	float TimeLimit;
 	void Teleport();
 	UFUNCTION(BlueprintImplementableEvent)
+		void OnCollect();
+	UFUNCTION(BlueprintImplementableEvent)
 		void OnTeleport(FVector position);
+	UFUNCTION()
+		void OnOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 };
